@@ -13,13 +13,17 @@ The focus is to establish strong engineering foundations through Version Control
 │ └── processed/ # Cleaned and transformed datasets
 ├── notebooks/
 │ ├── 01_eda.ipynb # Exploratory Data Analysis
+│ ├── 02_hypothesis_tests
+│ ├── 03_modeling_task4
 ├── dvc.yaml # Pipeline definition
+├── plots/
+├── reports/
+│ ├── figures/
 ├── requirements.txt
 ├── README.md
 └── .gitignore
 
 ```
-
 ---
 
 
@@ -89,6 +93,111 @@ dvc pull
 ```
 Open notebooks:
 ```bash
+jupyter lab
+```
+### Task 3 — Hypothesis Testing & Statistical Evidence
+✔ Key Analyses Performed
+
+- T-tests comparing claim amounts across:
+
+    - Gender
+    - Fuel type
+    - Vehicle type
+
+- Chi-Square tests:
+
+    - ClaimEvent × Region
+    - ClaimEvent × Gender
+
+- ANOVA for multi-category comparisons
+- Correlation significance tests for numeric predictors
+
+✔ Outcomes
+
+- Clean summary table of all hypothesis tests
+- File exported as:
+
+    - hypothesis_test_summary.csv
+
+📄 Notebook: notebooks/02_hypothesis_tests.ipynb
+📄 Output: data/processed/hypothesis_test_summary.csv
+
+### Task 4 — Predictive Modelling (Frequency, Severity, Pure Premium)
+✔ 1. Data Preprocessing
+
+- Robust memory-safe transformations
+- Numeric imputation
+- Categorical encoding with OneHotEncoder
+- Feature engineering:
+
+    - VehicleAge
+    - VehiclePowerRatio
+    - DriverExperience
+    - ClaimRateByProvince
+
+
+✔ 2. Frequency Modelling (Binary Classification)
+
+Models used:
+  - LogisticRegression(solver='saga') — sparse & scalable
+  - Optional: XGBoost with DMatrix
+
+Metrics:
+  - ROC-AUC
+  - F1
+  - Precision
+  - Recall
+  - Accuracy
+
+✔ 3. Severity Modelling (Regression)
+
+Models:
+  - RandomForestRegressor
+  - GradientBoostingRegressor
+  - Median Benchmark
+
+Metrics:
+  - RMSE
+  - MAE
+  - R²
+
+✔ 4. Pure Premium Estimation
+
+For each policy:
+
+Pure Premium = P(ClaimEvent=1) × E[ClaimCost | ClaimEvent=1]
+
+
+Computed using chunked memory-safe predictions:
+  - predict_proba_chunked()
+  - predict_chunked_regression()
+
+Final output saved:
+📄 data/processed/pure_premium_predictions.csv
+
+✔ 5. Model Explainability 
+
+  - SHAP values (TreeExplainer / LinearExplainer)
+  - Feature impact visualization
+  - Interpretation of primary drivers of risk
+
+
+🚀 Final Deliverables
+| **Component** | **Description**                                      |
+|---------------|------------------------------------------------------|
+| **Task 1**    | EDA + visuals + repo structure                       |
+| **Task 2**    | DVC pipeline + versioned datasets                    |
+| **Task 3**    | Statistical hypothesis testing + summary CSV         |
+| **Task 4**    | Frequency, severity, pure premium modeling + predictions CSV |
+
+
+All tasks are complete and reproducible using the instructions below.
+
+🛠️ How to Run Everything
+```bash
+git clone https://github.com/kalkidanzabreham/insurance-risk-analytics
+pip install -r requirements.txt
+dvc pull
 jupyter lab
 ```
 
