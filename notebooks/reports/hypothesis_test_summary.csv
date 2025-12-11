@@ -1,9 +1,0 @@
-Test,stat,p,p_adj_fdr,reject_fdr
-Province vs ClaimEvent (Chi-square),16490.3624794352,0.0,0.0,True
-Province vs Severity (Kruskal-Wallis),26682.016112864352,0.0,0.0,True
-Top 10 PostalCodes vs ClaimEvent (Chi-square),26037.20200447652,0.0,0.0,True
-Top 10 PostalCodes vs Severity (Kruskal-Wallis),54753.42103380048,0.0,0.0,True
-Top 10 PostalCodes vs Margin (Kruskal-Wallis),36093.24741624716,0.0,0.0,True
-Gender vs Claim Frequency (Proportion Z-Test),-22.40103914116724,3.845049019296106e-111,5.126732025728142e-111,True
-Gender vs Severity (t-test),-4.880583881045319,1.0723229850690174e-06,1.0723229850690174e-06,True
-Gender vs Severity (Mann-Whitney),126399122.5,5.814395329662856e-89,6.645023233900406e-89,True
